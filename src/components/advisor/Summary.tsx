@@ -29,7 +29,7 @@ export default function Summary({
       <AnimatedEntry animation="scale-in">
         <div className="space-y-3">
           {!readOnly && (
-            <Label htmlFor="summary">{t('sections.summary.title')}</Label>
+            <Label htmlFor="summary">{t('sections.summary.title') || 'Professional Summary'}</Label>
           )}
           
           {readOnly ? (
@@ -42,7 +42,7 @@ export default function Summary({
               value={summary}
               onChange={handleChange}
               className="min-h-[150px] bg-white resize-y p-3"
-              placeholder={t('sections.summary.placeholder')}
+              placeholder={t('sections.summary.placeholder') || 'Write a brief summary of your professional background and expertise...'}
             />
           )}
         </div>

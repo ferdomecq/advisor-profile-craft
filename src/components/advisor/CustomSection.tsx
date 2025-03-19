@@ -4,6 +4,7 @@ import { BlurredCard } from "@/components/ui/BlurredCard";
 import { AnimatedEntry } from "@/lib/animation";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface CustomSectionProps {
   content: string;
@@ -16,6 +17,8 @@ export default function CustomSection({
   readOnly = false,
   onUpdate = () => {},
 }: CustomSectionProps) {
+  const { t } = useLanguage();
+  
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     if (readOnly) return;
     onUpdate(e.target.value);
@@ -32,7 +35,7 @@ export default function CustomSection({
       <AnimatedEntry animation="scale-in">
         <div className="space-y-3">
           {!readOnly && (
-            <Label htmlFor="customContent">Personal Message</Label>
+            <Label htmlFor="customContent">{t('sections.customSection.title') || 'Personal Message'}</Label>
           )}
           
           {readOnly ? (
@@ -48,7 +51,7 @@ export default function CustomSection({
               value={content}
               onChange={handleChange}
               className="min-h-[200px] bg-white resize-y p-3"
-              placeholder="Share a personal message with your clients..."
+              placeholder={t('sections.customSection.placeholder') || "Share a personal message with your clients..."}
             />
           )}
         </div>
