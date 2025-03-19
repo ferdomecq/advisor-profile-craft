@@ -77,6 +77,11 @@ export const AdvisorEditContent = ({
             <ExperienceSection 
               experiences={advisor.experience} 
               readOnly={false}
+              onUpdate={(experiences) => {
+                // This is a placeholder for the onUpdateExperience function
+                // Since AdvisorEditContent doesn't have onUpdateExperience in its props
+                console.log("Experience updated:", experiences);
+              }}
             />
           </BlurredCard>
         </AnimatedEntry>
@@ -88,6 +93,14 @@ export const AdvisorEditContent = ({
               education={advisor.education} 
               certifications={advisor.certifications}
               readOnly={false}
+              onUpdateEducation={(education) => {
+                // This is a placeholder for the onUpdateEducation function
+                console.log("Education updated:", education);
+              }}
+              onUpdateCertifications={(certifications) => {
+                // This is a placeholder for the onUpdateCertifications function
+                console.log("Certifications updated:", certifications);
+              }}
             />
           </BlurredCard>
         </AnimatedEntry>

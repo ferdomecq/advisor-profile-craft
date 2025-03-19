@@ -88,6 +88,39 @@ const AdvisorEdit = () => {
     }));
   };
   
+  const handleUpdateExperience = (experience: typeof advisor.experience) => {
+    setAdvisor((prev) => ({
+      ...prev,
+      experience,
+    }));
+    
+    toast.success("Experience updated", {
+      description: "Your work experience has been updated successfully.",
+    });
+  };
+  
+  const handleUpdateEducation = (education: typeof advisor.education) => {
+    setAdvisor((prev) => ({
+      ...prev,
+      education,
+    }));
+    
+    toast.success("Education updated", {
+      description: "Your education information has been updated successfully.",
+    });
+  };
+  
+  const handleUpdateCertifications = (certifications: typeof advisor.certifications) => {
+    setAdvisor((prev) => ({
+      ...prev,
+      certifications,
+    }));
+    
+    toast.success("Certifications updated", {
+      description: "Your certifications have been updated successfully.",
+    });
+  };
+  
   const handleSaveProfile = () => {
     toast.success("Profile saved", {
       description: "Your profile has been updated successfully!",
