@@ -119,6 +119,7 @@ const AdvisorEdit = () => {
         onUpdateServices={handleUpdateServices}
         onUpdateSpecializations={handleUpdateSpecializations}
         onUpdateCustomContent={handleUpdateCustomContent}
+        onUpdateContactInfo={handleUpdateContactInfo}
         onImportFromLinkedIn={handleImportFromLinkedIn}
       />
       

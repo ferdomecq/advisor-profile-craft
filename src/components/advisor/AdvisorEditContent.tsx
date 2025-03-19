@@ -18,6 +18,7 @@ interface AdvisorEditContentProps {
   onUpdateServices: (services: AdvisorProfile['services']) => void;
   onUpdateSpecializations: (specializations: AdvisorProfile['specializations']) => void;
   onUpdateCustomContent: (content: string) => void;
+  onUpdateContactInfo: (contactInfo: Partial<AdvisorProfile['contactInfo']>) => void;
   onImportFromLinkedIn: () => void;
 }
 
@@ -28,6 +29,7 @@ export const AdvisorEditContent = ({
   onUpdateServices,
   onUpdateSpecializations,
   onUpdateCustomContent,
+  onUpdateContactInfo,
   onImportFromLinkedIn,
 }: AdvisorEditContentProps) => {
   return (
@@ -107,10 +109,10 @@ export const AdvisorEditContent = ({
             <Contact 
               contactInfo={advisor.contactInfo} 
               readOnly={false}
+              onUpdate={onUpdateContactInfo}
             />
           </BlurredCard>
         </AnimatedEntry>
       </div>
     </div>
   );
-};
