@@ -5,18 +5,50 @@ import { ProfilePicture } from "@/components/ui/ProfilePicture";
 import { Button } from "@/components/ui/button";
 import { BasicInfo } from "@/lib/types";
 import { AnimatedEntry } from "@/lib/animation";
-import { Linkedin, Mail, Calendar, Share2 } from "lucide-react";
+import { Linkedin, Mail, Calendar, Share2, MessageCircle } from "lucide-react";
 import Rating from "./Rating";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { format } from "date-fns";
 
 interface ProfileHeaderProps {
   data: BasicInfo;
   rating?: number;
   onImportFromLinkedIn: () => void;
+  calendlyLink?: string;
+  email?: string;
 }
 
-export default function ProfileHeader({ data, rating, onImportFromLinkedIn }: ProfileHeaderProps) {
+export default function ProfileHeader({ 
+  data, 
+  rating, 
+  onImportFromLinkedIn,
+  calendlyLink,
+  email 
+}: ProfileHeaderProps) {
   const { t } = useLanguage();
+  
+  const [chatMessages, setChatMessages] = React.useState<{id: number, sender: string, message: string, timestamp: Date}[]>([
+    { id: 1, sender: "client", message: "Hello, I'm interested in your financial advisory services.", timestamp: new Date(Date.now() - 3600000) },
+    { id: 2, sender: "advisor", message: "Hi there! Thank you for reaching out. I'd be happy to discuss how I can help with your financial goals.", timestamp: new Date(Date.now() - 3500000) }
+  ]);
+  const [newMessage, setNewMessage] = React.useState("");
+  
+  const sendMessage = () => {
+    if (!newMessage.trim()) return;
+    
+    setChatMessages([
+      ...chatMessages,
+      {
+        id: chatMessages.length + 1,
+        sender: "advisor",
+        message: newMessage,
+        timestamp: new Date()
+      }
+    ]);
+    
+    setNewMessage("");
+  };
   
   return (
     <BlurredCard 
@@ -89,15 +121,77 @@ export default function ProfileHeader({ data, rating, onImportFromLinkedIn }: Pr
           
           <AnimatedEntry animation="fade-in" delay={200}>
             <div className="flex flex-wrap gap-2 pt-2 mt-4 border-t border-gray-100">
-              <Button variant="default" size="sm" className="premium-button-primary gap-1.5">
+              <Button 
+                variant="default" 
+                size="sm" 
+                className="premium-button-primary gap-1.5"
+                onClick={() => email && (window.location.href = `mailto:${email}`)}
+              >
                 <Mail size={16} />
                 <span>{t('profile.contact')}</span>
               </Button>
               
-              <Button variant="outline" size="sm" className="gap-1.5 bg-white">
-                <Calendar size={16} />
-                <span>{t('profile.schedule')}</span>
-              </Button>
+              {calendlyLink ? (
+                <a href={calendlyLink} target="_blank" rel="noopener noreferrer">
+                  <Button variant="outline" size="sm" className="gap-1.5 bg-white">
+                    <Calendar size={16} />
+                    <span>{t('profile.schedule')}</span>
+                  </Button>
+                </a>
+              ) : (
+                <Button variant="outline" size="sm" className="gap-1.5 bg-white">
+                  <Calendar size={16} />
+                  <span>{t('profile.schedule')}</span>
+                </Button>
+              )}
+              
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button variant="outline" size="sm" className="gap-1.5 bg-white">
+                    <MessageCircle size={16} />
+                    <span>Chat Now</span>
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-md">
+                  <DialogHeader>
+                    <DialogTitle>Chat with {data.firstName} {data.lastName}</DialogTitle>
+                  </DialogHeader>
+                  <div className="flex flex-col h-80">
+                    <div className="flex-1 overflow-y-auto p-4 space-y-4">
+                      {chatMessages.map((msg) => (
+                        <div 
+                          key={msg.id} 
+                          className={`flex ${msg.sender === 'advisor' ? 'justify-end' : 'justify-start'}`}
+                        >
+                          <div 
+                            className={`max-w-[75%] rounded-lg p-3 ${
+                              msg.sender === 'advisor' 
+                                ? "bg-primary text-primary-foreground" 
+                                : "bg-muted"
+                            }`}
+                          >
+                            <p>{msg.message}</p>
+                            <p className="text-xs opacity-70 mt-1">
+                              {format(msg.timestamp, "p")}
+                            </p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="border-t p-3 flex gap-2">
+                      <input 
+                        type="text"
+                        placeholder="Type your message..." 
+                        value={newMessage} 
+                        onChange={(e) => setNewMessage(e.target.value)}
+                        onKeyDown={(e) => e.key === 'Enter' && sendMessage()}
+                        className="flex-1 px-3 py-2 border rounded-md"
+                      />
+                      <Button onClick={sendMessage}>Send</Button>
+                    </div>
+                  </div>
+                </DialogContent>
+              </Dialog>
             </div>
           </AnimatedEntry>
         </div>

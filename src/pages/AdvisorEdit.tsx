@@ -86,6 +86,18 @@ const AdvisorEdit = () => {
         ...contactInfo,
       },
     }));
+    
+    if (contactInfo.calendlyLink) {
+      toast.success("Calendar link updated", {
+        description: "Your scheduling link has been added. Clients can now book appointments with you.",
+      });
+    }
+    
+    if (contactInfo.advisorName) {
+      toast.success("Chat name updated", {
+        description: "Your name will be displayed in chat conversations with clients.",
+      });
+    }
   };
   
   const handleUpdateExperience = (experience: typeof advisor.experience) => {

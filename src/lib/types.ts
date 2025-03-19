@@ -57,6 +57,7 @@ export interface ContactInfo {
   email: string;
   phone: string;
   calendlyLink?: string;
+  advisorName?: string;
 }
 
 export interface AdvisorProfile {
