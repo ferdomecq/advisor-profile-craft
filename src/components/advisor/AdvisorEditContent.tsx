@@ -13,10 +13,10 @@ import Contact from "@/components/advisor/Contact";
 
 interface AdvisorEditContentProps {
   advisor: AdvisorProfile;
-  onUpdateBasicInfo: (data: Partial<typeof advisor.basicInfo>) => void;
+  onUpdateBasicInfo: (data: Partial<AdvisorProfile['basicInfo']>) => void;
   onUpdateSummary: (summary: string) => void;
-  onUpdateServices: (services: typeof advisor.services) => void;
-  onUpdateSpecializations: (specializations: typeof advisor.specializations) => void;
+  onUpdateServices: (services: AdvisorProfile['services']) => void;
+  onUpdateSpecializations: (specializations: AdvisorProfile['specializations']) => void;
   onUpdateCustomContent: (content: string) => void;
   onImportFromLinkedIn: () => void;
 }

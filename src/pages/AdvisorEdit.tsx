@@ -77,6 +77,16 @@ const AdvisorEdit = () => {
       customContent: content,
     }));
   };
+
+  const handleUpdateContactInfo = (contactInfo: Partial<typeof advisor.contactInfo>) => {
+    setAdvisor((prev) => ({
+      ...prev,
+      contactInfo: {
+        ...prev.contactInfo,
+        ...contactInfo,
+      },
+    }));
+  };
   
   const handleSaveProfile = () => {
     toast.success("Profile saved", {
