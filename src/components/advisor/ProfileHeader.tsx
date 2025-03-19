@@ -7,6 +7,7 @@ import { BasicInfo } from "@/lib/types";
 import { AnimatedEntry } from "@/lib/animation";
 import { Linkedin, Mail, Calendar, Share2 } from "lucide-react";
 import Rating from "./Rating";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface ProfileHeaderProps {
   data: BasicInfo;
@@ -15,6 +16,8 @@ interface ProfileHeaderProps {
 }
 
 export default function ProfileHeader({ data, rating, onImportFromLinkedIn }: ProfileHeaderProps) {
+  const { t } = useLanguage();
+  
   return (
     <BlurredCard 
       variant="glass" 
@@ -38,7 +41,7 @@ export default function ProfileHeader({ data, rating, onImportFromLinkedIn }: Pr
           <AnimatedEntry animation="fade-in" delay={100}>
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
               <div>
-                <div className="chip-primary mb-2">Financial Advisor</div>
+                <div className="chip-primary mb-2">{t('profile.title')}</div>
                 <h1 className="text-3xl md:text-4xl font-medium tracking-tight">
                   {data.firstName} {data.lastName}
                 </h1>
@@ -72,13 +75,13 @@ export default function ProfileHeader({ data, rating, onImportFromLinkedIn }: Pr
                 ) : (
                   <Button onClick={onImportFromLinkedIn} variant="outline" size="sm" className="gap-2 h-9">
                     <Linkedin size={16} />
-                    <span>Import from LinkedIn</span>
+                    <span>{t('profile.import')}</span>
                   </Button>
                 )}
                 
                 <Button variant="outline" size="sm" className="gap-2 h-9">
                   <Share2 size={16} />
-                  <span>Share Profile</span>
+                  <span>{t('profile.share')}</span>
                 </Button>
               </div>
             </div>
@@ -88,12 +91,12 @@ export default function ProfileHeader({ data, rating, onImportFromLinkedIn }: Pr
             <div className="flex flex-wrap gap-2 pt-2 mt-4 border-t border-gray-100">
               <Button variant="default" size="sm" className="premium-button-primary gap-1.5">
                 <Mail size={16} />
-                <span>Contact Me</span>
+                <span>{t('profile.contact')}</span>
               </Button>
               
               <Button variant="outline" size="sm" className="gap-1.5 bg-white">
                 <Calendar size={16} />
-                <span>Schedule Meeting</span>
+                <span>{t('profile.schedule')}</span>
               </Button>
             </div>
           </AnimatedEntry>

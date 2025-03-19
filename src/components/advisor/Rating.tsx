@@ -4,6 +4,7 @@ import { Star } from "lucide-react";
 import { AnimatedEntry } from "@/lib/animation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface RatingProps {
   rating: number;
@@ -69,11 +70,13 @@ export function AdvisorRatingCard({
   reviewCount: number;
   readOnly?: boolean;
 }) {
+  const { t } = useLanguage();
+  
   return (
     <AnimatedEntry animation="fade-in" className="w-full">
       <Card className="overflow-hidden border-gray-100">
         <CardHeader className="pb-2">
-          <CardTitle className="text-lg font-medium">Advisor Rating</CardTitle>
+          <CardTitle className="text-lg font-medium">{t('rating.title')}</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="flex items-center gap-4">
@@ -83,10 +86,10 @@ export function AdvisorRatingCard({
             </div>
             <div>
               <p className="text-gray-600">
-                Based on <span className="font-medium">{reviewCount}</span> client reviews
+                {t('rating.basedOn')} <span className="font-medium">{reviewCount}</span> {t('rating.reviews')}
               </p>
               <p className="text-sm text-gray-500 mt-1">
-                Ratings reflect clients' satisfaction with the advisor's services
+                {t('rating.description')}
               </p>
             </div>
           </div>

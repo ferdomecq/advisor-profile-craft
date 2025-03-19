@@ -16,10 +16,13 @@ import CustomSection from "@/components/advisor/CustomSection";
 import Contact from "@/components/advisor/Contact";
 import { Briefcase, Award, GraduationCap, MessageSquareQuote, User, FileText, Phone, Star } from "lucide-react";
 import { AdvisorRatingCard } from "@/components/advisor/Rating";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
 
 const Index = () => {
   const [advisor, setAdvisor] = useState<AdvisorProfile>(MOCK_ADVISOR);
   const [isEditing, setIsEditing] = useState(false);
+  const { t } = useLanguage();
   
   const handleImportFromLinkedIn = () => {
     toast.success("LinkedIn import feature", {
@@ -49,6 +52,11 @@ const Index = () => {
   
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+      {/* Language switcher in top right corner */}
+      <div className="absolute top-4 right-4 z-10">
+        <LanguageSwitcher />
+      </div>
+      
       {/* Main Content with beautiful subtle gradient background */}
       <div className="max-w-5xl mx-auto px-4 py-8 animate-fade-in">
         <ProfileHeader 
@@ -64,7 +72,7 @@ const Index = () => {
               label: (
                 <div className="flex items-center space-x-2">
                   <User size={16} />
-                  <span>About</span>
+                  <span>{t('tabs.about')}</span>
                 </div>
               ),
               content: (
@@ -88,7 +96,7 @@ const Index = () => {
               label: (
                 <div className="flex items-center space-x-2">
                   <Star size={16} />
-                  <span>Rating</span>
+                  <span>{t('tabs.rating')}</span>
                 </div>
               ),
               content: (
@@ -104,7 +112,7 @@ const Index = () => {
               label: (
                 <div className="flex items-center space-x-2">
                   <Briefcase size={16} />
-                  <span>Experience</span>
+                  <span>{t('tabs.experience')}</span>
                 </div>
               ),
               content: (
@@ -119,7 +127,7 @@ const Index = () => {
               label: (
                 <div className="flex items-center space-x-2">
                   <GraduationCap size={16} />
-                  <span>Education</span>
+                  <span>{t('tabs.education')}</span>
                 </div>
               ),
               content: (
@@ -135,7 +143,7 @@ const Index = () => {
               label: (
                 <div className="flex items-center space-x-2">
                   <MessageSquareQuote size={16} />
-                  <span>Testimonials</span>
+                  <span>{t('tabs.testimonials')}</span>
                 </div>
               ),
               content: (
@@ -150,7 +158,7 @@ const Index = () => {
               label: (
                 <div className="flex items-center space-x-2">
                   <FileText size={16} />
-                  <span>Custom</span>
+                  <span>{t('tabs.custom')}</span>
                 </div>
               ),
               content: (
@@ -165,7 +173,7 @@ const Index = () => {
               label: (
                 <div className="flex items-center space-x-2">
                   <Phone size={16} />
-                  <span>Contact</span>
+                  <span>{t('tabs.contact')}</span>
                 </div>
               ),
               content: (
@@ -182,7 +190,7 @@ const Index = () => {
       {/* Footer */}
       <footer className="border-t border-gray-100 mt-20 py-10 text-center text-sm text-gray-500">
         <div className="max-w-5xl mx-auto px-4">
-          <p>© 2023 CITEC AI. All rights reserved.</p>
+          <p>{t('footer.rights')}</p>
         </div>
       </footer>
     </div>

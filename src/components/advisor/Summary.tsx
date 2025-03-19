@@ -4,6 +4,7 @@ import { BlurredCard } from "@/components/ui/BlurredCard";
 import { AnimatedEntry } from "@/lib/animation";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface SummaryProps {
   summary: string;
@@ -16,6 +17,8 @@ export default function Summary({
   readOnly = false,
   onUpdate = () => {},
 }: SummaryProps) {
+  const { t } = useLanguage();
+  
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     if (readOnly) return;
     onUpdate(e.target.value);
@@ -26,7 +29,7 @@ export default function Summary({
       <AnimatedEntry animation="scale-in">
         <div className="space-y-3">
           {!readOnly && (
-            <Label htmlFor="summary">Professional Summary</Label>
+            <Label htmlFor="summary">{t('sections.summary.title')}</Label>
           )}
           
           {readOnly ? (
@@ -39,7 +42,7 @@ export default function Summary({
               value={summary}
               onChange={handleChange}
               className="min-h-[150px] bg-white resize-y p-3"
-              placeholder="Share your professional background, expertise, and approach to working with clients..."
+              placeholder={t('sections.summary.placeholder')}
             />
           )}
         </div>
