@@ -6,13 +6,15 @@ import { Button } from "@/components/ui/button";
 import { BasicInfo } from "@/lib/types";
 import { AnimatedEntry } from "@/lib/animation";
 import { Linkedin, Mail, Calendar, Share2 } from "lucide-react";
+import Rating from "./Rating";
 
 interface ProfileHeaderProps {
   data: BasicInfo;
+  rating?: number;
   onImportFromLinkedIn: () => void;
 }
 
-export default function ProfileHeader({ data, onImportFromLinkedIn }: ProfileHeaderProps) {
+export default function ProfileHeader({ data, rating, onImportFromLinkedIn }: ProfileHeaderProps) {
   return (
     <BlurredCard 
       variant="glass" 
@@ -43,10 +45,20 @@ export default function ProfileHeader({ data, onImportFromLinkedIn }: ProfileHea
                 <p className="text-lg text-gray-600 mt-1">
                   {data.title} at {data.company}
                 </p>
-                <p className="text-sm text-gray-500 flex items-center mt-2">
-                  <span className="inline-block w-1.5 h-1.5 rounded-full bg-gray-400 mr-2"></span>
-                  {data.location}
-                </p>
+                <div className="flex items-center gap-3 mt-2">
+                  <p className="text-sm text-gray-500 flex items-center">
+                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-gray-400 mr-2"></span>
+                    {data.location}
+                  </p>
+                  {rating && (
+                    <>
+                      <span className="text-sm text-gray-300">•</span>
+                      <div className="flex items-center">
+                        <Rating rating={rating} size="sm" showValue={true} />
+                      </div>
+                    </>
+                  )}
+                </div>
               </div>
               
               <div className="flex flex-wrap gap-2">

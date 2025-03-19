@@ -70,4 +70,5 @@ export interface AdvisorProfile {
   testimonials: Testimonial[];
   customContent: string;
   contactInfo: ContactInfo;
+  overallRating?: number;
 }

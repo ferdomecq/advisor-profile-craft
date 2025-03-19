@@ -14,7 +14,8 @@ import EducationSection from "@/components/advisor/Education";
 import Testimonials from "@/components/advisor/Testimonials";
 import CustomSection from "@/components/advisor/CustomSection";
 import Contact from "@/components/advisor/Contact";
-import { Briefcase, Award, GraduationCap, MessageSquareQuote, User, FileText, Phone } from "lucide-react";
+import { Briefcase, Award, GraduationCap, MessageSquareQuote, User, FileText, Phone, Star } from "lucide-react";
+import { AdvisorRatingCard } from "@/components/advisor/Rating";
 
 const Index = () => {
   const [advisor, setAdvisor] = useState<AdvisorProfile>(MOCK_ADVISOR);
@@ -43,12 +44,16 @@ const Index = () => {
     }));
   };
   
+  // Calculate review count from testimonials
+  const reviewCount = advisor.testimonials.length;
+  
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
       {/* Main Content with beautiful subtle gradient background */}
       <div className="max-w-5xl mx-auto px-4 py-8 animate-fade-in">
         <ProfileHeader 
           data={advisor.basicInfo} 
+          rating={advisor.overallRating}
           onImportFromLinkedIn={handleImportFromLinkedIn}
         />
         
@@ -76,6 +81,22 @@ const Index = () => {
                     readOnly={!isEditing}
                   />
                 </div>
+              ),
+            },
+            {
+              id: "rating",
+              label: (
+                <div className="flex items-center space-x-2">
+                  <Star size={16} />
+                  <span>Rating</span>
+                </div>
+              ),
+              content: (
+                <AdvisorRatingCard 
+                  rating={advisor.overallRating || 0} 
+                  reviewCount={reviewCount}
+                  readOnly={!isEditing} 
+                />
               ),
             },
             {

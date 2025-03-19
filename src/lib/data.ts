@@ -121,7 +121,8 @@ export const MOCK_ADVISOR: AdvisorProfile = {
     email: 'sarah.johnson@capitalwp.com',
     phone: '+1 (415) 555-7890',
     calendlyLink: 'https://calendly.com/sarahjohnson/30min',
-  }
+  },
+  overallRating: 4.9
 };
 
 export const AVAILABLE_SERVICES: Service[] = [
