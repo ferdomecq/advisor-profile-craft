@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { MOCK_ADVISOR } from "@/lib/data";
@@ -11,7 +10,7 @@ import BasicInfoSection from "@/components/advisor/BasicInfo";
 import Summary from "@/components/advisor/Summary";
 import Services from "@/components/advisor/Services";
 import ExperienceSection from "@/components/advisor/Experience";
-import EducationSection from "@/components/advisor/Education";
+import EducationSection from "@/components/advisor/EducationSection";
 import Testimonials from "@/components/advisor/Testimonials";
 import CustomSection from "@/components/advisor/CustomSection";
 import Contact from "@/components/advisor/Contact";
@@ -49,12 +48,10 @@ const Index = () => {
     }));
   };
   
-  // Calculate review count from testimonials
   const reviewCount = advisor.testimonials.length;
   
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-      {/* Language switcher in top right corner */}
       <div className="absolute top-4 right-4 z-10">
         <div className="flex items-center gap-3">
           <Link to="/advisor/edit">
@@ -73,7 +70,6 @@ const Index = () => {
         </div>
       </div>
       
-      {/* Main Content with beautiful subtle gradient background */}
       <div className="max-w-5xl mx-auto px-4 py-8 animate-fade-in">
         <ProfileHeader 
           data={advisor.basicInfo} 
@@ -203,7 +199,6 @@ const Index = () => {
         />
       </div>
       
-      {/* Footer */}
       <footer className="border-t border-gray-100 mt-20 py-10 text-center text-sm text-gray-500">
         <div className="max-w-5xl mx-auto px-4">
           <p>{t('footer.rights')}</p>

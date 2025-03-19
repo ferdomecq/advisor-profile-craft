@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { MOCK_ADVISOR } from "@/lib/data";
@@ -16,7 +15,7 @@ import BasicInfoSection from "@/components/advisor/BasicInfo";
 import Summary from "@/components/advisor/Summary";
 import Services from "@/components/advisor/Services";
 import ExperienceSection from "@/components/advisor/Experience";
-import EducationSection from "@/components/advisor/Education";
+import EducationSection from "@/components/advisor/EducationSection";
 import Testimonials from "@/components/advisor/Testimonials";
 import CustomSection from "@/components/advisor/CustomSection";
 import Contact from "@/components/advisor/Contact";
@@ -31,7 +30,6 @@ const CustomerView = () => {
   const [advisor, setAdvisor] = useState<AdvisorProfile>(MOCK_ADVISOR);
   const { t } = useLanguage();
   
-  // State for the review form
   const [reviewForm, setReviewForm] = useState({
     clientName: "",
     company: "",
@@ -68,7 +66,6 @@ const CustomerView = () => {
     
     setIsSubmittingReview(true);
     
-    // Simulate network request
     setTimeout(() => {
       const newTestimonial: Testimonial = {
         id: `t-${Date.now()}`,
@@ -79,10 +76,8 @@ const CustomerView = () => {
         date: new Date().toISOString(),
       };
       
-      // Update advisor with new testimonial
       const updatedTestimonials = [...advisor.testimonials, newTestimonial];
       
-      // Calculate new average rating
       const totalRating = updatedTestimonials.reduce((sum, t) => sum + t.rating, 0);
       const newRating = totalRating / updatedTestimonials.length;
       
@@ -92,7 +87,6 @@ const CustomerView = () => {
         overallRating: parseFloat(newRating.toFixed(1)),
       }));
       
-      // Reset form
       setReviewForm({
         clientName: "",
         company: "",
@@ -108,17 +102,14 @@ const CustomerView = () => {
     }, 1000);
   };
   
-  // Calculate review count from testimonials
   const reviewCount = advisor.testimonials.length;
   
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-      {/* Language switcher in top right corner */}
       <div className="absolute top-4 right-4 z-10">
         <LanguageSwitcher />
       </div>
       
-      {/* Header with back button */}
       <header className="border-b border-gray-100 bg-white">
         <div className="max-w-5xl mx-auto px-4 py-4 flex items-center">
           <Link to="/">
@@ -130,7 +121,6 @@ const CustomerView = () => {
         </div>
       </header>
       
-      {/* Main Content */}
       <div className="max-w-5xl mx-auto px-4 py-8 animate-fade-in">
         <ProfileHeader 
           data={advisor.basicInfo} 
@@ -211,7 +201,6 @@ const CustomerView = () => {
                     readOnly={true}
                   />
                   
-                  {/* Customer Rating & Review Form */}
                   <AnimatedEntry animation="fade-in" delay={200}>
                     <BlurredCard className="p-6">
                       <h3 className="text-lg font-medium mb-4">Write a Review</h3>
@@ -298,7 +287,6 @@ const CustomerView = () => {
         />
       </div>
       
-      {/* Footer */}
       <footer className="border-t border-gray-100 mt-20 py-10 text-center text-sm text-gray-500">
         <div className="max-w-5xl mx-auto px-4">
           <p>{t('footer.rights')}</p>

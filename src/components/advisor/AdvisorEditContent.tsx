@@ -1,4 +1,3 @@
-
 import React from "react";
 import { AdvisorProfile } from "@/lib/types";
 import { BlurredCard } from "@/components/ui/BlurredCard";
@@ -7,7 +6,7 @@ import BasicInfoSection from "@/components/advisor/BasicInfo";
 import Summary from "@/components/advisor/Summary";
 import Services from "@/components/advisor/Services";
 import ExperienceSection from "@/components/advisor/Experience";
-import EducationSection from "@/components/advisor/Education";
+import EducationSection from "@/components/advisor/EducationSection";
 import CustomSection from "@/components/advisor/CustomSection";
 import Contact from "@/components/advisor/Contact";
 
