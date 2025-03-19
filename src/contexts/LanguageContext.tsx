@@ -1,7 +1,7 @@
 
 import React, { createContext, useState, useContext, ReactNode } from 'react';
-import { enUS } from 'src/i18n/en-US';
-import { esES } from 'src/i18n/es-ES';
+import { enUS } from '@/i18n/en-US';
+import { esES } from '@/i18n/es-ES';
 
 export type Language = 'en' | 'es';
 
