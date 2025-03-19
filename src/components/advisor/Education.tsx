@@ -49,9 +49,15 @@ export default function EducationSection({
   const handleSaveEdu = () => {
     if (!editEduForm) return;
     
+    // Convert year from string to number
+    const formWithNumberYear = {
+      ...editEduForm,
+      year: Number(editEduForm.year)
+    };
+    
     const updatedEducation = isNewEdu 
-      ? [...education, editEduForm]
-      : education.map(edu => edu.id === editingEduId ? editEduForm : edu);
+      ? [...education, formWithNumberYear]
+      : education.map(edu => edu.id === editingEduId ? formWithNumberYear : edu);
     
     onUpdateEducation(updatedEducation);
     setEditingEduId(null);
@@ -103,9 +109,15 @@ export default function EducationSection({
   const handleSaveCert = () => {
     if (!editCertForm) return;
     
+    // Convert year from string to number
+    const formWithNumberYear = {
+      ...editCertForm,
+      year: Number(editCertForm.year)
+    };
+    
     const updatedCertifications = isNewCert 
-      ? [...certifications, editCertForm]
-      : certifications.map(cert => cert.id === editingCertId ? editCertForm : cert);
+      ? [...certifications, formWithNumberYear]
+      : certifications.map(cert => cert.id === editingCertId ? formWithNumberYear : cert);
     
     onUpdateCertifications(updatedCertifications);
     setEditingCertId(null);
