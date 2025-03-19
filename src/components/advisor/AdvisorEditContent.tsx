@@ -20,6 +20,9 @@ interface AdvisorEditContentProps {
   onUpdateCustomContent: (content: string) => void;
   onUpdateContactInfo: (contactInfo: Partial<AdvisorProfile['contactInfo']>) => void;
   onImportFromLinkedIn: () => void;
+  onUpdateEducation: (education: AdvisorProfile['education']) => void;
+  onUpdateCertifications: (certifications: AdvisorProfile['certifications']) => void;
+  onUpdateExperience: (experience: AdvisorProfile['experience']) => void;
 }
 
 export const AdvisorEditContent = ({
@@ -31,6 +34,9 @@ export const AdvisorEditContent = ({
   onUpdateCustomContent,
   onUpdateContactInfo,
   onImportFromLinkedIn,
+  onUpdateEducation,
+  onUpdateCertifications,
+  onUpdateExperience,
 }: AdvisorEditContentProps) => {
   return (
     <div className="max-w-5xl mx-auto px-4 py-8 animate-fade-in">
@@ -77,11 +83,7 @@ export const AdvisorEditContent = ({
             <ExperienceSection 
               experiences={advisor.experience} 
               readOnly={false}
-              onUpdate={(experiences) => {
-                // This is a placeholder for the onUpdateExperience function
-                // Since AdvisorEditContent doesn't have onUpdateExperience in its props
-                console.log("Experience updated:", experiences);
-              }}
+              onUpdate={onUpdateExperience}
             />
           </BlurredCard>
         </AnimatedEntry>
@@ -93,14 +95,8 @@ export const AdvisorEditContent = ({
               education={advisor.education} 
               certifications={advisor.certifications}
               readOnly={false}
-              onUpdateEducation={(education) => {
-                // This is a placeholder for the onUpdateEducation function
-                console.log("Education updated:", education);
-              }}
-              onUpdateCertifications={(certifications) => {
-                // This is a placeholder for the onUpdateCertifications function
-                console.log("Certifications updated:", certifications);
-              }}
+              onUpdateEducation={onUpdateEducation}
+              onUpdateCertifications={onUpdateCertifications}
             />
           </BlurredCard>
         </AnimatedEntry>

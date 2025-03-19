@@ -166,6 +166,9 @@ const AdvisorEdit = () => {
         onUpdateCustomContent={handleUpdateCustomContent}
         onUpdateContactInfo={handleUpdateContactInfo}
         onImportFromLinkedIn={handleImportFromLinkedIn}
+        onUpdateEducation={handleUpdateEducation}
+        onUpdateCertifications={handleUpdateCertifications}
+        onUpdateExperience={handleUpdateExperience}
       />
       
       <AdvisorEditFooter />
