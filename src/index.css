@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -13,7 +14,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 222.2 47.4% 11.2%;
+    --primary: 210 100% 35%;
     --primary-foreground: 210 40% 98%;
 
     --secondary: 210 40% 96.1%;
@@ -22,7 +23,7 @@
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 210 40% 96.1%;
+    --accent: 196 100% 42.5%;
     --accent-foreground: 222.2 47.4% 11.2%;
 
     --destructive: 0 84.2% 60.2%;
@@ -32,22 +33,15 @@
     --input: 214.3 31.8% 91.4%;
     --ring: 222.2 84% 4.9%;
 
-    --radius: 0.5rem;
+    --radius: 0.85rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
@@ -96,6 +90,97 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  input, textarea {
+    @apply focus:outline-none focus:ring-2 focus:ring-primary/20 focus:ring-offset-0 transition-all duration-200;
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
   }
 }
+
+/* Custom glass morphism classes */
+@layer components {
+  .glass {
+    @apply bg-white/80 backdrop-blur-md border border-white/20 shadow-glass;
+  }
+  
+  .glass-card {
+    @apply bg-white/90 backdrop-blur-md border border-slate-200/80 shadow-card hover:shadow-card-hover transition-all duration-400;
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-citec-blue to-citec-accent;
+  }
+  
+  /* Animated underline effect */
+  .animated-underline {
+    @apply relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-citec-blue after:transition-all after:duration-300 hover:after:w-full;
+  }
+
+  /* Premium button styles */
+  .premium-button {
+    @apply rounded-lg px-4 py-2.5 transition-all duration-300 shadow-button hover:shadow-button-hover;
+  }
+  
+  .premium-button-primary {
+    @apply premium-button bg-citec-blue text-white hover:bg-citec-blue/90;
+  }
+  
+  .premium-button-secondary {
+    @apply premium-button bg-white text-citec-darkGray border border-gray-200 hover:bg-gray-50;
+  }
+  
+  .premium-button-accent {
+    @apply premium-button bg-citec-accent text-white hover:bg-citec-accent/90;
+  }
+
+  /* Chip component styles */
+  .chip {
+    @apply inline-flex items-center rounded-full px-3 py-1 text-sm font-medium;
+  }
+  
+  .chip-primary {
+    @apply chip bg-citec-blue/10 text-citec-blue;
+  }
+  
+  .chip-secondary {
+    @apply chip bg-citec-gray text-citec-darkGray;
+  }
+  
+  .chip-accent {
+    @apply chip bg-citec-accent/10 text-citec-accent;
+  }
+}
+
+/* Smooth scroll physics */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 100px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+/* Animations helper classes */
+.stagger-1 { animation-delay: 100ms; }
+.stagger-2 { animation-delay: 200ms; }
+.stagger-3 { animation-delay: 300ms; }
+.stagger-4 { animation-delay: 400ms; }
+.stagger-5 { animation-delay: 500ms; }

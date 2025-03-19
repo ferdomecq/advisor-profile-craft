@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,6 +62,13 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				citec: {
+					blue: "#0052CC",
+					lightBlue: "#4C9AFF",
+					gray: "#F4F5F7",
+					darkGray: "#42526E",
+					accent: "#00B8D9"
 				}
 			},
 			borderRadius: {
@@ -84,11 +92,88 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'fade-in': {
+					'0%': { opacity: '0' },
+					'100%': { opacity: '1' }
+				},
+				'fade-out': {
+					'0%': { opacity: '1' },
+					'100%': { opacity: '0' }
+				},
+				'slide-in': {
+					'0%': { transform: 'translateY(20px)', opacity: '0' },
+					'100%': { transform: 'translateY(0)', opacity: '1' }
+				},
+				'slide-up': {
+					'0%': { transform: 'translateY(100%)', opacity: '0' },
+					'100%': { transform: 'translateY(0)', opacity: '1' }
+				},
+				'scale-in': {
+					'0%': { transform: 'scale(0.95)', opacity: '0' },
+					'100%': { transform: 'scale(1)', opacity: '1' }
+				},
+				'blur-in': {
+					'0%': { filter: 'blur(8px)', opacity: '0' },
+					'100%': { filter: 'blur(0)', opacity: '1' }
+				},
+				'float': {
+					'0%, 100%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-10px)' }
+				},
+				'pulse-subtle': {
+					'0%, 100%': { opacity: '1' },
+					'50%': { opacity: '0.85' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'fade-in': 'fade-in 0.5s ease-out',
+				'fade-out': 'fade-out 0.5s ease-out',
+				'slide-in': 'slide-in 0.6s ease-out',
+				'slide-up': 'slide-up 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
+				'scale-in': 'scale-in 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
+				'blur-in': 'blur-in 0.7s cubic-bezier(0.16, 1, 0.3, 1)',
+				'float': 'float 6s ease-in-out infinite',
+				'pulse-subtle': 'pulse-subtle 3s ease-in-out infinite'
+			},
+			fontFamily: {
+				sans: [
+					"SF Pro Display",
+					"SF Pro",
+					"ui-sans-serif",
+					"system-ui",
+					"-apple-system",
+					"BlinkMacSystemFont", 
+					"Segoe UI",
+					"Roboto",
+					"Helvetica Neue",
+					"Arial",
+					"sans-serif"
+				]
+			},
+			boxShadow: {
+				'glass': '0 4px 30px rgba(0, 0, 0, 0.05)',
+				'glass-lg': '0 8px 32px rgba(0, 0, 0, 0.08)',
+				'button': '0 1px 2px rgba(0, 0, 0, 0.05)',
+				'button-hover': '0 3px 6px rgba(0, 0, 0, 0.1)',
+				'card': '0 2px 10px rgba(0, 0, 0, 0.03)',
+				'card-hover': '0 10px 30px rgba(0, 0, 0, 0.08)'
+			},
+			backdropBlur: {
+				'xs': '2px',
+			},
+			transitionProperty: {
+				'height': 'height',
+				'spacing': 'margin, padding',
+			},
+			transitionTimingFunction: {
+				'apple': 'cubic-bezier(0.25, 0.1, 0.25, 1)',
+			},
+			transitionDuration: {
+				'400': '400ms',
+				'600': '600ms',
 			}
 		}
 	},
