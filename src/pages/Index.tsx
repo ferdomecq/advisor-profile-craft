@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { MOCK_ADVISOR } from "@/lib/data";
 import { AdvisorProfile } from "@/lib/types";
-import { toast } from "@/components/ui/sonner";
+import { toast } from "sonner";
 import { BlurredCard } from "@/components/ui/BlurredCard";
 import ProfileHeader from "@/components/advisor/ProfileHeader";
 import ProfileTabs from "@/components/advisor/ProfileTabs";
