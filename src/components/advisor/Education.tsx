@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { BlurredCard } from "@/components/ui/BlurredCard";
 import { AnimatedEntry, staggeredChildren } from "@/lib/animation";
@@ -34,7 +33,6 @@ export default function EducationSection({
   const getDelayEdu = staggeredChildren(100, 150);
   const getDelayCert = staggeredChildren(300, 150);
   
-  // Education handlers
   const handleEditEdu = (edu: Education) => {
     setEditingEduId(edu.id);
     setEditEduForm({ ...edu });
@@ -49,7 +47,6 @@ export default function EducationSection({
   const handleSaveEdu = () => {
     if (!editEduForm) return;
     
-    // Convert year from string to number
     const formWithNumberYear = {
       ...editEduForm,
       year: Number(editEduForm.year)
@@ -81,7 +78,7 @@ export default function EducationSection({
       institution: "",
       degree: "",
       fieldOfStudy: "",
-      year: ""
+      year: 0
     };
     
     setEditEduForm(newEdu);
@@ -94,7 +91,6 @@ export default function EducationSection({
     onUpdateEducation(updatedEducation);
   };
   
-  // Certification handlers
   const handleEditCert = (cert: Certification) => {
     setEditingCertId(cert.id);
     setEditCertForm({ ...cert });
@@ -109,7 +105,6 @@ export default function EducationSection({
   const handleSaveCert = () => {
     if (!editCertForm) return;
     
-    // Convert year from string to number
     const formWithNumberYear = {
       ...editCertForm,
       year: Number(editCertForm.year)
@@ -140,7 +135,7 @@ export default function EducationSection({
       id: `temp-cert-${Date.now()}`,
       name: "",
       issuer: "",
-      year: ""
+      year: 0
     };
     
     setEditCertForm(newCert);
@@ -155,7 +150,6 @@ export default function EducationSection({
   
   return (
     <div className="space-y-8">
-      {/* Education */}
       <div className="space-y-5">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
@@ -230,6 +224,7 @@ export default function EducationSection({
                         value={editEduForm?.year || ""}
                         onChange={handleChangeEdu}
                         className="bg-white"
+                        type="number"
                       />
                     </div>
                     
@@ -298,7 +293,6 @@ export default function EducationSection({
         </div>
       </div>
       
-      {/* Certifications */}
       <div className="space-y-5">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
@@ -362,6 +356,7 @@ export default function EducationSection({
                         value={editCertForm?.year || ""}
                         onChange={handleChangeCert}
                         className="bg-white"
+                        type="number"
                       />
                     </div>
                     
