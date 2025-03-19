@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { BlurredCard } from "@/components/ui/BlurredCard";
 import { AnimatedEntry, staggeredChildren } from "@/lib/animation";
@@ -148,6 +149,136 @@ export default function EducationSection({
     onUpdateCertifications(updatedCertifications);
   };
   
+  // Helper to render a new education form
+  const renderNewEducationForm = () => {
+    if (!editEduForm) return null;
+    
+    return (
+      <AnimatedEntry animation="slide-in">
+        <BlurredCard 
+          variant="outline" 
+          padding="md"
+        >
+          <div className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="institution">Institution</Label>
+              <Input
+                id="institution"
+                name="institution"
+                value={editEduForm.institution || ""}
+                onChange={handleChangeEdu}
+                className="bg-white"
+              />
+            </div>
+            
+            <div className="space-y-2">
+              <Label htmlFor="degree">Degree</Label>
+              <Input
+                id="degree"
+                name="degree"
+                value={editEduForm.degree || ""}
+                onChange={handleChangeEdu}
+                className="bg-white"
+              />
+            </div>
+            
+            <div className="space-y-2">
+              <Label htmlFor="fieldOfStudy">Field of Study</Label>
+              <Input
+                id="fieldOfStudy"
+                name="fieldOfStudy"
+                value={editEduForm.fieldOfStudy || ""}
+                onChange={handleChangeEdu}
+                className="bg-white"
+              />
+            </div>
+            
+            <div className="space-y-2">
+              <Label htmlFor="year">Year</Label>
+              <Input
+                id="year"
+                name="year"
+                value={editEduForm.year || ""}
+                onChange={handleChangeEdu}
+                className="bg-white"
+                type="number"
+              />
+            </div>
+            
+            <div className="flex justify-end space-x-2">
+              <Button variant="outline" size="sm" onClick={handleCancelEdu}>
+                Cancel
+              </Button>
+              <Button size="sm" onClick={handleSaveEdu}>
+                <Save size={14} className="mr-1" />
+                Save
+              </Button>
+            </div>
+          </div>
+        </BlurredCard>
+      </AnimatedEntry>
+    );
+  };
+  
+  // Helper to render a new certification form
+  const renderNewCertificationForm = () => {
+    if (!editCertForm) return null;
+    
+    return (
+      <AnimatedEntry animation="scale-in">
+        <BlurredCard 
+          variant="outline"
+          className="p-4 min-w-[250px]"
+        >
+          <div className="space-y-3">
+            <div className="space-y-2">
+              <Label htmlFor="cert-name" className="text-sm">Certification Name</Label>
+              <Input
+                id="cert-name"
+                name="name"
+                value={editCertForm.name || ""}
+                onChange={handleChangeCert}
+                className="bg-white"
+              />
+            </div>
+            
+            <div className="space-y-2">
+              <Label htmlFor="cert-issuer" className="text-sm">Issuing Organization</Label>
+              <Input
+                id="cert-issuer"
+                name="issuer"
+                value={editCertForm.issuer || ""}
+                onChange={handleChangeCert}
+                className="bg-white"
+              />
+            </div>
+            
+            <div className="space-y-2">
+              <Label htmlFor="cert-year" className="text-sm">Year</Label>
+              <Input
+                id="cert-year"
+                name="year"
+                value={editCertForm.year || ""}
+                onChange={handleChangeCert}
+                className="bg-white"
+                type="number"
+              />
+            </div>
+            
+            <div className="flex justify-end space-x-2 mt-2">
+              <Button variant="outline" size="sm" onClick={handleCancelCert}>
+                Cancel
+              </Button>
+              <Button size="sm" onClick={handleSaveCert}>
+                Save
+              </Button>
+            </div>
+          </div>
+        </BlurredCard>
+      </AnimatedEntry>
+    );
+  };
+  
   return (
     <div className="space-y-8">
       <div className="space-y-5">
@@ -279,7 +410,10 @@ export default function EducationSection({
             </AnimatedEntry>
           ))}
           
-          {!readOnly && !editingEduId && education.length === 0 && (
+          {/* Show the new education form when adding a new item */}
+          {isNewEdu && renderNewEducationForm()}
+          
+          {!readOnly && !editingEduId && education.length === 0 && !isNewEdu && (
             <AnimatedEntry animation="fade-in" delay={getDelayEdu()}>
               <BlurredCard
                 variant="outline"
@@ -406,7 +540,10 @@ export default function EducationSection({
             </AnimatedEntry>
           ))}
           
-          {!readOnly && !editingCertId && certifications.length === 0 && (
+          {/* Show the new certification form when adding a new item */}
+          {isNewCert && renderNewCertificationForm()}
+          
+          {!readOnly && !editingCertId && certifications.length === 0 && !isNewCert && (
             <AnimatedEntry animation="scale-in" delay={getDelayCert()}>
               <BlurredCard
                 variant="outline"
