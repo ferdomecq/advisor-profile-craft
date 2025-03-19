@@ -85,6 +85,22 @@ export const enUS = {
   navigation: {
     advisorArea: 'Advisor Area',
     customerView: 'Customer View',
+    marketplace: 'Find an Advisor',
+  },
+  marketplace: {
+    title: 'Find a Financial Advisor',
+    searchPlaceholder: 'Search by name, title, or expertise...',
+    filters: 'Filters',
+    filterOptions: 'Filter Options',
+    resetFilters: 'Reset Filters',
+    expertise: 'Area of Expertise',
+    selectExpertise: 'Select an expertise area',
+    allExpertise: 'All Expertise Areas',
+    minRating: 'Minimum Rating',
+    anyRating: 'Any Rating',
+    advisorsFound: 'advisors found',
+    noAdvisorsFound: 'No advisors match your search criteria',
+    viewProfile: 'View Profile',
   },
   footer: {
     rights: '© 2023 CITEC AI. All rights reserved.',

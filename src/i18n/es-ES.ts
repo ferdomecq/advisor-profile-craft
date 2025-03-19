@@ -85,6 +85,22 @@ export const esES = {
   navigation: {
     advisorArea: 'Área de Asesor',
     customerView: 'Vista de Cliente',
+    marketplace: 'Encontrar un Asesor',
+  },
+  marketplace: {
+    title: 'Encontrar un Asesor Financiero',
+    searchPlaceholder: 'Buscar por nombre, título o especialización...',
+    filters: 'Filtros',
+    filterOptions: 'Opciones de Filtro',
+    resetFilters: 'Restablecer Filtros',
+    expertise: 'Área de Especialización',
+    selectExpertise: 'Seleccionar un área de especialización',
+    allExpertise: 'Todas las Áreas de Especialización',
+    minRating: 'Calificación Mínima',
+    anyRating: 'Cualquier Calificación',
+    advisorsFound: 'asesores encontrados',
+    noAdvisorsFound: 'No hay asesores que coincidan con tus criterios de búsqueda',
+    viewProfile: 'Ver Perfil',
   },
   footer: {
     rights: '© 2023 CITEC AI. Todos los derechos reservados.',
