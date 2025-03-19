@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { MOCK_ADVISOR } from "@/lib/data";
 import { AdvisorProfile } from "@/lib/types";
@@ -109,7 +108,7 @@ const AdvisorEdit = () => {
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
       {/* Language switcher in top right corner */}
       <div className="absolute top-4 right-4 z-10">
-        <LanguageSwitcher />
+        <LanguageSwitcher variant="icon" className="mr-2" />
       </div>
       
       {/* Header */}
