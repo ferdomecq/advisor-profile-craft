@@ -1,5 +1,6 @@
 
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { MOCK_ADVISOR } from "@/lib/data";
 import { AdvisorProfile } from "@/lib/types";
 import { toast } from "sonner";
@@ -14,10 +15,11 @@ import EducationSection from "@/components/advisor/Education";
 import Testimonials from "@/components/advisor/Testimonials";
 import CustomSection from "@/components/advisor/CustomSection";
 import Contact from "@/components/advisor/Contact";
-import { Briefcase, Award, GraduationCap, MessageSquareQuote, User, FileText, Phone, Star } from "lucide-react";
+import { Briefcase, Award, GraduationCap, MessageSquareQuote, User, FileText, Phone, Star, Edit, UserCheck } from "lucide-react";
 import { AdvisorRatingCard } from "@/components/advisor/Rating";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
+import { Button } from "@/components/ui/button";
 
 const Index = () => {
   const [advisor, setAdvisor] = useState<AdvisorProfile>(MOCK_ADVISOR);
@@ -54,7 +56,21 @@ const Index = () => {
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
       {/* Language switcher in top right corner */}
       <div className="absolute top-4 right-4 z-10">
-        <LanguageSwitcher />
+        <div className="flex items-center gap-3">
+          <Link to="/advisor/edit">
+            <Button variant="outline" size="sm" className="gap-2">
+              <Edit size={14} />
+              <span>Advisor Area</span>
+            </Button>
+          </Link>
+          <Link to={`/customer/${advisor.basicInfo.firstName}-${advisor.basicInfo.lastName}`}>
+            <Button variant="outline" size="sm" className="gap-2">
+              <UserCheck size={14} />
+              <span>Customer View</span>
+            </Button>
+          </Link>
+          <LanguageSwitcher />
+        </div>
       </div>
       
       {/* Main Content with beautiful subtle gradient background */}
